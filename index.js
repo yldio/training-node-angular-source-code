@@ -18,8 +18,9 @@ server.on('request', function(req, res) {
         file.serveFile('/index.html', 200, {}, req, res);
       } else {
         console.error('error processing request %s %s:', req.method, req.url, err);
-        res.writeHead(err.status);
-        res.end(err.message);
+        res.statusCode = err.status;
+        res.setHeader('content-type', 'application/json');
+        res.end(JSON.stringify({error: { message: err.message}}));
       }
     }
   });

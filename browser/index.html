@@ -51,7 +51,18 @@
       </div>
     </div>
 
-    <div class="container" ng-view>
+    <div class="container">
+
+      <div class="container" ng-controller="ErrorCtrl">
+        <div id="error" class="container" ng-show="error" ng-cloak>
+          <div class="alert alert-error">
+            <button type="button" class="close" ng-click="dismiss()">&times;</button>
+            <p class="message">{{error}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" ng-view></div>
 
     </div> <!-- /container -->
 
@@ -62,6 +73,7 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/angular.js"></script>
     <script src="/js/angular-resource.js"></script>
+    <script src="/js/controllers/error.js"></script>
     <script src="/js/controllers/user.js"></script>
     <script src="/js/app.js"></script>
 
