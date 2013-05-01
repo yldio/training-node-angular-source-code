@@ -8,7 +8,6 @@ function sessionRoutes(server) {
   /// POST /user
 
   server.post('/session', function(req, res, next) {
-    console.log('/session with params:', req.params);
     users.get(req.params.email, function(err, user) {
       if (err) {
         if (err.status_code == 404)

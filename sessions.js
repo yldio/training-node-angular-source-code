@@ -17,3 +17,17 @@ function createSession(user, cb) {
       cb(err, sessionId);
     });
 };
+
+exports.getAndRenew =
+function getAndRenewSession(sessionId, cb) {
+  var key = prefix + sessionId;
+  client.get(key, function(err, user) {
+    if (err) return cb(err);
+    if (user) {
+      user = JSON.parse(user);
+      // renew session
+      client.expire(key, ttl_secs);
+    }
+    cb(null, user);
+  });
+};
