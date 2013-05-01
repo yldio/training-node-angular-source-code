@@ -10,6 +10,8 @@
     "node-static": "*",
     "nano": "*",
     "restify": "*",
-    "bcrypt": "*"
+    "bcrypt": "*",
+    "redis": "*",
+    "node-uuid": "*"
   }
 }

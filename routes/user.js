@@ -7,7 +7,6 @@ function userRoutes(server) {
   /// POST /user
 
   server.post('/user', function(req, res, next) {
-    console.log('inserting user', req.params);
     password.encode(req.params.password, function(err, hash) {
 
       var user = {
@@ -28,4 +27,4 @@ function userRoutes(server) {
 
     });
   });
-}
+};
