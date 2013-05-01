@@ -5,6 +5,7 @@ function NewUserCtrl($scope, UserRes, $location) {
     $scope.submitting = true;
 
     function success() {
+      console.log('success!');
       $location.url('/user/welcome');
     }
 

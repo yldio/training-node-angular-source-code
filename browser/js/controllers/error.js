@@ -5,7 +5,12 @@ function ErrorCtrl($scope, $rootScope) {
   };
 
   $rootScope.$on('error', function(event, err) {
-    console.log('got error from th root scope', err);
+    console.log('got error from the root scope', err);
     $scope.error = err.data && err.data.error && err.data.error.message || 'Error';
+  });
+
+  /// Clear any error when route changes
+  $rootScope.$on('$routeChangeStart', function() {
+    $scope.error = undefined;
   });
 }

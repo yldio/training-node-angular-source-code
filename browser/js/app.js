@@ -13,6 +13,8 @@ App.config(function($locationProvider, $routeProvider) {
     });
 });
 
-App.factory('UserRes', function($resource) {
-  return $resource('/user');
+App.factory('UserRes', function($resource, $http) {
+  $http.useXDomain = true;
+
+  return $resource('http://localhost\\:3001/user');
 });

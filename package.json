@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "node-static": "*",
-    "nano": "*"
+    "nano": "*",
+    "restify": "*",
+    "bcrypt": "*"
   }
 }
