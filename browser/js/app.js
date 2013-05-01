@@ -6,5 +6,9 @@ App.config(function($locationProvider, $routeProvider) {
   $routeProvider.
     when('/', {
       templateUrl: '/partials/index.html'
+    }).
+    when('/user/new', {
+      templateUrl: '/partials/user/new.html',
+      controller: 'NewUserCtrl'
     });
 });

@@ -1,0 +1,25 @@
+<h1>Fill this form to signup:</h1>
+
+<form id="user" name="form" class="form-horizontal" novalidate>
+
+  <div class="control-group">
+    <label class="control-label" for="email">Email</label>
+    <div class="controls">
+      <input ng-model="user.email" type="email" id="email" placeholder="Email" name="email" required autocomplete="off">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls">
+      <input ng-model="user.password" type="password" id="password" name="password" ng-minlength="3" required>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn" ng-click="create()" ng-disabled="form.$invalid || submitting">Create</button>
+    </div>
+  </div>
+
+</form>
