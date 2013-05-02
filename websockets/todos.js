@@ -17,6 +17,11 @@ function handleLists(stream) {
 
     client.on('list', function(listId) {
 
+      lists.get(listId, function(err, list) {
+        if (err) return stream.emit('error', err);
+        client.emit('list', list);
+      });
+
       // emit
       var eventKeyPrefix = 'list:' + listId + ':';
       function emit(e) {
@@ -24,11 +29,6 @@ function handleLists(stream) {
         args[0] = eventKeyPrefix + e;
         hub.emit.apply(hub, args);
       }
-
-      lists.get(listId, function(err, list) {
-        if (err) return stream.emit('error', err);
-        client.emit('list', list);
-      });
 
       // propagate events
 
@@ -54,7 +54,6 @@ function handleLists(stream) {
       client.emit = function emit() {
         oldClientEmit.apply(client, arguments);
       };
-
 
       // index
 

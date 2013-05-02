@@ -6,7 +6,7 @@ function TodosCtrl($scope, Websocket, $location, $routeParams) {
   $scope.newtodo = {};
   $scope.todos = [];
 
-  Websocket.connect('http://localhost:3001/todos', function(server) {
+  Websocket.connect($scope, 'http://localhost:3001/todos', function(server) {
 
     authenticate(server, $.jStorage.get('session'), $location);
 
