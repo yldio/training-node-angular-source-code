@@ -2,6 +2,7 @@ var duplexEmitter = require('duplex-emitter');
 var authenticate = require('./authenticate');
 var lists = require('../data').lists;
 var todos = require('../data').todos;
+var hub = require('./hub');
 
 module.exports =
 function handleLists(stream) {
@@ -16,10 +17,44 @@ function handleLists(stream) {
 
     client.on('list', function(listId) {
 
+      // emit
+      var eventKeyPrefix = 'list:' + listId + ':';
+      function emit(e) {
+        var args = Array.prototype.slice.apply(arguments);
+        args[0] = eventKeyPrefix + e;
+        hub.emit.apply(hub, args);
+      }
+
       lists.get(listId, function(err, list) {
         if (err) return stream.emit('error', err);
         client.emit('list', list);
       });
+
+      // propagate events
+
+      ['new', 'remove', 'update'].forEach(function(event) {
+
+        function propagator() {
+          var args = Array.prototype.slice.apply(arguments);
+          args.unshift(event);
+          client.emit.apply(client, args);
+        }
+
+        var hubEvent = eventKeyPrefix + event;
+        hub.on(hubEvent, propagator);
+
+        // Stop propagation once stream ends
+        stream.once('end', function() {
+          hub.removeListener(hubEvent, propagator);
+        });
+
+      });
+
+      var oldClientEmit = client.emit;
+      client.emit = function emit() {
+        oldClientEmit.apply(client, arguments);
+      };
+
 
       // index
 
@@ -41,7 +76,7 @@ function handleLists(stream) {
           if (err) return stream.emit('error', err);
           todo._id = res.id;
           todo._rev = res.rev;
-          client.emit('new', todo);
+          emit('new', todo);
         });
       });
 
@@ -53,7 +88,7 @@ function handleLists(stream) {
           if (todo.list == listId) {
             todos.destroy(todo._id, todo._rev, function(err) {
               if (err) return stream.emit('error', err);
-              client.emit('remove', id);
+              emit('remove', id);
             });
           } // else TODO
         });
@@ -66,7 +101,7 @@ function handleLists(stream) {
           if (err) return stream.emit('error', err);
           todo._id = res.id;
           todo._rev = res.rev;
-          client.emit('update', todo);
+          emit('update', todo);
         });
       });
 
@@ -75,6 +110,8 @@ function handleLists(stream) {
 
   });
 }
+
+/// Utils
 
 function prop(p) {
   return function(o) {
