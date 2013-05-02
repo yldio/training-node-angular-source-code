@@ -1,3 +1,4 @@
+window.NewSessionCtrl =
 function NewSessionCtrl($scope, SessionRes, $location, $cookies) {
   $scope.session = new SessionRes;
 
@@ -5,8 +6,9 @@ function NewSessionCtrl($scope, SessionRes, $location, $cookies) {
     $scope.submitting = true;
 
     function success(res) {
-      $cookies.sessionId = res.sessionId;
-      $location.url('/todos');
+      console.log('setting session id to', res.sessionId);
+      $.jStorage.set('session', res.sessionId);
+      $location.url($location.search().from || '/lists');
     }
 
     function error(err) {

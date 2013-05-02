@@ -1,0 +1,10 @@
+#!/bin/bash
+DIRNAME=`dirname "$0"`
+cd ${DIRNAME}/..
+./node_modules/.bin/browserify --debug \
+           browser/js/app.js \
+           browser/js/controllers/error.js \
+           browser/js/controllers/user.js \
+           browser/js/controllers/session.js \
+           browser/js/controllers/lists.js \
+           -o browser/js/app-bundle.js

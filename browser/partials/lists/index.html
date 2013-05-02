@@ -1,0 +1,31 @@
+<h1>To-do Lists</h1>
+
+<form name="form" class="form-inline" novalidate>
+  <input ng-model="newlist.name" type="text" id="description" placeholder="New list name" name="name" required autocomplete="off">
+  <button type="submit" class="btn" ng-click="create()" ng-disabled="form.$invalid || submitting">Create</button>
+</form>
+
+<table id="lists" class="table table-striped" ng-cloak>
+
+  <thead ng-show="lists.length">
+    <tr>
+      <td>Name</td>
+      <td style="width: 1em"></td>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr ng-show="!lists.length">
+      <td colspan="2">No lists found</td>
+    </tr>
+
+    <tr ng-repeat="list in lists">
+      <td class="name">
+        <a href="/lists/{{list._id}}">{{list.name}}</a>
+      </td>
+      <td class="remove"><a ng-click="remove(list)"><i class="icon-remove"></i></a></td>
+    </tr>
+  </tbody>
+
+</table>

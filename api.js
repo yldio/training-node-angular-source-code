@@ -25,10 +25,12 @@ server.once('listening', function() {
   console.log('API Server is listening on port %d', port);
 });
 
-server.on('request', function(req, res) {
-  console.log('%s %s', req.method, req.url);
-});
-
 /// CORS support
 
 server.on('MethodNotAllowed', require('./api_unknown_method_handler')());
+
+
+/// Websockets
+
+var websockets = require('./websockets');
+websockets.install(server);

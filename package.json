@@ -12,6 +12,10 @@
     "restify": "*",
     "bcrypt": "*",
     "redis": "*",
-    "node-uuid": "*"
+    "node-uuid": "*",
+    "shoe": "*",
+    "duplex-emitter": "*",
+    "browserify": "*",
+    "reconnect": "*"
   }
 }

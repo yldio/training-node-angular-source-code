@@ -1,3 +1,4 @@
+window.ErrorCtrl =
 function ErrorCtrl($scope, $rootScope) {
 
   $scope.dismiss = function() {
@@ -13,4 +14,4 @@ function ErrorCtrl($scope, $rootScope) {
   $rootScope.$on('$routeChangeStart', function() {
     $scope.error = undefined;
   });
-}
+};

@@ -17,6 +17,10 @@ App.config(function($locationProvider, $routeProvider) {
     when('/session/new', {
       templateUrl: '/partials/session/new.html',
       controller: 'NewSessionCtrl'
+    }).
+    when('/lists', {
+      templateUrl: '/partials/lists/index.html',
+      controller: 'ListsCtrl'
     });
 });
 
@@ -30,4 +34,25 @@ App.factory('SessionRes', function($resource, $http) {
   $http.useXDomain = true;
 
   return $resource('http://localhost\\:3001/session');
+});
+
+
+/// Web Sockets
+
+var reconnect = require('reconnect');
+var duplexEmitter = require('duplex-emitter');
+
+App.factory('Websocket', function() {
+
+  function connect(path, cb) {
+    reconnect(function(stream) {
+      var server = duplexEmitter(stream);
+      cb(server);
+    }).connect(path);
+  }
+
+  return {
+    connect: connect
+  };
+
 });

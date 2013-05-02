@@ -1,3 +1,4 @@
+window.NewUserCtrl =
 function NewUserCtrl($scope, UserRes, $location) {
   $scope.user = new UserRes;
 
