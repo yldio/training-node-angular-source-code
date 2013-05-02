@@ -65,6 +65,24 @@ function TodosCtrl($scope, Websocket, $location, $routeParams) {
         if (pos > -1) $scope.todos[pos] = todo;
         $scope.$digest();
       });
+
+      /// search and filter
+
+      $scope.resetSearch = function() {
+        $scope.setSearch(null);
+      };
+
+      $scope.setSearch = function(state) {
+        $location.search('state', state);
+      };
+
+      function captureStateFilter() {
+        $scope.stateFilter = $location.search().state;
+      }
+
+      $scope.location = $location;
+      $scope.$watch('location.search().state', captureStateFilter);
+
     });
   });
 
