@@ -50,11 +50,6 @@ function handleLists(stream) {
 
       });
 
-      var oldClientEmit = client.emit;
-      client.emit = function emit() {
-        oldClientEmit.apply(client, arguments);
-      };
-
       // index
 
       client.on('index', function() {
