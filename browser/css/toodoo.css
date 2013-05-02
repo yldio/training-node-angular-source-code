@@ -1,0 +1,21 @@
+/** Todos table **/
+
+#todos {
+  width: auto;
+}
+
+#todos .description {
+  min-width: 200px;
+}
+
+#todos .pending {
+  background-position: -144px -144px;
+}
+
+#todos .done {
+  background-position: -288px 0;
+}
+
+#todos tfoot td {
+  text-align: center;
+}

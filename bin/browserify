@@ -7,4 +7,5 @@ cd ${DIRNAME}/..
            browser/js/controllers/user.js \
            browser/js/controllers/session.js \
            browser/js/controllers/lists.js \
+           browser/js/controllers/todos.js \
            -o browser/js/app-bundle.js
