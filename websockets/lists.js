@@ -13,8 +13,6 @@ function handleLists(stream) {
 
   stream.once('authenticated', function(user) {
 
-    console.log('stream is authenticated');
-
     // index
 
     client.on('index', function() {

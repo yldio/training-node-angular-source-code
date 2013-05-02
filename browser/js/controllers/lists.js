@@ -15,13 +15,11 @@ function ListsCtrl($scope, Websocket, $location) {
       /// Create
 
       $scope.create = function create() {
-        console.log('Creating', $scope.newlist);
         server.emit('new', $scope.newlist);
         $scope.newlist = {};
       };
 
       server.on('new', function(list) {
-        console.log('new list:', list);
         $scope.lists.push(list);
         $scope.$digest();
       });
@@ -31,7 +29,6 @@ function ListsCtrl($scope, Websocket, $location) {
       server.emit('index');
 
       server.on('index', function(lists) {
-        console.log('setting lists to', lists);
         $scope.lists = lists;
         $scope.$digest();
       });
