@@ -6,7 +6,7 @@ function ListsCtrl($scope, Websocket, $location) {
   $scope.newlist = {};
   $scope.lists = [];
 
-  Websocket.connect('http://localhost:3001/lists', function(server) {
+  Websocket.connect($scope, 'http://localhost:3001/lists', function(server) {
 
     authenticate(server, $.jStorage.get('session'), $location);
 

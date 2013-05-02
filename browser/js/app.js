@@ -44,8 +44,15 @@ var duplexEmitter = require('duplex-emitter');
 
 App.factory('Websocket', function() {
 
-  function connect(path, cb) {
+  function connect(scope, path, cb) {
+    var r =
     reconnect(function(stream) {
+
+      scope.$on('$destroy', function() {
+        r.reconnect = false;
+        stream.end();
+      });
+
       var server = duplexEmitter(stream);
       cb(server);
     }).connect(path);
