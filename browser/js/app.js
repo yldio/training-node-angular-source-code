@@ -21,6 +21,10 @@ App.config(function($locationProvider, $routeProvider) {
     when('/lists', {
       templateUrl: '/partials/lists/index.html',
       controller: 'ListsCtrl'
+    }).
+    when('/lists/:listId', {
+      templateUrl: '/partials/todos/index.html',
+      controller: 'TodosCtrl'
     });
 });
 

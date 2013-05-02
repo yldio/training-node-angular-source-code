@@ -1,6 +1,6 @@
 var shoe = require('shoe');
 
-var roots = ['lists'];
+var roots = ['lists', 'todos'];
 
 exports.install =
 function install(server) {
