@@ -24,7 +24,8 @@ App.config(function($locationProvider, $routeProvider) {
     }).
     when('/lists/:listId', {
       templateUrl: '/partials/todos/index.html',
-      controller: 'TodosCtrl'
+      controller: 'TodosCtrl',
+      reloadOnSearch: false /// IMPORTANT
     });
 });
 
