@@ -1,0 +1,21 @@
+{
+  "name": "rebuild",
+  "version": "0.0.0",
+  "description": "todo app with angular, couchdb and websockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Ruffles",
+  "license": "©",
+  "dependencies": {
+    "node-static": "~0.7.3",
+    "nano": "~5.9.1",
+    "restify": "~2.8.0",
+    "bcrypt": "~0.7.8",
+    "shoe": "0.0.15",
+    "duplex-emitter": "~2.1.2",
+    "reconnect": "~2.0.0",
+    "browserify": "~4.1.3"
+  }
+}

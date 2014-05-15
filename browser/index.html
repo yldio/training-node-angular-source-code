@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Todos</title>
+  <link rel="stylesheet"
+  href="/bootstrap/css/bootstrap-responsive.css">
+</head>
+
+<body ng-app="ToodooApp">
+
+<header>
+  <h1>Todos</h1>
+</header>
+
+<div ng-controller="ErrorCtrl">
+  <div ng-show="error" ng-cloak>
+    <p type=button class=message>{{ error }}</p>
+    <button ng-click=dismiss()>Close</button>
+  </div>
+</div>
+
+<div class="container" ng-view></div>
+
+<footer>
+  <a href="http://yld.io">yld.io</a>
+</footer>
+
+<script src='/angular/angular.js'></script>
+<script src='/angular/angular-route.js'></script>
+<script src='/angular/angular-resource.js'></script>
+<script src='/js/app-bundle.js'></script>
+
+</body>
+
+

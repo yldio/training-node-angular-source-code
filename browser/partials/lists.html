@@ -1,0 +1,15 @@
+<h1>Lists</h1>
+<form name=list ng-submit=create()>
+  <label>
+    Name: 
+    <input ng-model='newlist.name'>
+  </label>
+
+  <button>Create</button>
+</form>
+
+<ul>
+  <li ng-repeat='list in lists'>
+    {{ list.name }}
+  </li>
+</ul>
